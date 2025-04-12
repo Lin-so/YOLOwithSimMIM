@@ -60,7 +60,7 @@ def build_simmim(cfg):
         if d > 1:
             d = max(round(d*depth),1)
         depths.append(d)
-    return SimMIM(SwinTransformerForSimMIM(
+    simmim = SimMIM(SwinTransformerForSimMIM(
         img_size = cfg['img_size'],
         patch_size = cfg['patch_size'],
         in_chans = 3,
@@ -70,6 +70,11 @@ def build_simmim(cfg):
         num_heads = cfg['num_heads'],
         window_size = cfg['window_size']
         ),32)
+    LOGGER.info(f"\n{colorstr('green','SimMIM BackBone Part'):^111}")
+    for i, layer in enumerate(simmim.encoder.layers):
+        p = sum(x.numel() for x in layer.parameters())  # number params
+        LOGGER.info(f"{i:>3}{'-1':>20}{layer.depth:>3}{p:10.0f}  {'SwinTransformer':<45}{str([layer.dim,layer.input_resolution,layer.blocks[0].num_heads]):<30}")  # print
+    return simmim
 
 def build_yolohead(d):
     max_channels = float("inf")
@@ -87,7 +92,8 @@ def build_yolohead(d):
         Conv.default_act = eval(act)  # redefine default activation, i.e. Conv.default_act = nn.SiLU()
         LOGGER.info(f"{colorstr('activation:')} {act}")  # print
 
-        LOGGER.info(f"\n{'':>3}{'from':>20}{'n':>3}{'params':>10}  {'module':<45}{'arguments':<30}")
+    LOGGER.info(f"\n{colorstr('green','YOLO Head Part'):^111}")
+    LOGGER.info(f"{'':>3}{'from':>20}{'n':>3}{'params':>10}  {'module':<45}{'arguments':<30}")
     embed_dim = make_divisible(min(embed_dim, max_channels) * width, 8)
     ch = [*[embed_dim*2**x for x in range(1,depths)]]
     ch.append(embed_dim*2**(depths-1))

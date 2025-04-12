@@ -22,14 +22,15 @@
    cd YOLOwithSimMIM
 
 2. 安装依赖
+   ```bash
    pip install -r requirements.txt
 
 ## 实验数据
 待补充
 
 ## 参考
-SimMIM: A Simple Framework for Masked Image Modeling: https://arxiv.org/abs/2111.09886
-Swin Transformer: https://arxiv.org/abs/2103.14030
+- SimMIM: A Simple Framework for Masked Image Modeling: https://arxiv.org/abs/2111.09886
+- Swin Transformer: https://arxiv.org/abs/2103.14030
 
 ## 联系方式
 如有问题或建议，请联系：[1531626399@qq.com]
