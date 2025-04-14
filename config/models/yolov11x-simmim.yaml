@@ -9,7 +9,6 @@ scales: # model compound scaling constants, i.e. 'model=yolo11n.yaml' will call 
   m: [0.50, 1.00, 512]
   l: [1.00, 1.00, 512]
   x: [1.00, 1.50, 512]
-scale: n
 
 # SimMIM Encoder
 embed_dim: 128

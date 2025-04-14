@@ -13,8 +13,8 @@ from utils import build_simmim, build_yolohead, MaskGenerator
 from ultralytics.utils.loss import v8DetectionLoss, E2EDetectLoss
 
 
-class YOLOwithSimMIM(BaseModel):
-    def __init__(self, cfg=None, pretrain=False):
+class YOLOwithSimMIMModel(BaseModel):
+    def __init__(self, cfg=None, pretrain=False, verbose=True):
         super().__init__()
         self.yaml = cfg = cfg if isinstance(cfg, dict) else yaml_load(cfg)
         self.simmim = build_simmim(cfg)

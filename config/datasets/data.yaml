@@ -1,0 +1,16 @@
+train: D:\dataset\new_train_data\sapling_det\project-45-at-2025-03-25-14-39-5b74b0b9_train_valid\train\images
+val: D:\dataset\new_train_data\sapling_det\project-45-at-2025-03-25-14-39-5b74b0b9_train_valid\valid\images
+
+nc: 8
+names: ['Y&G', 'Yellow_Sapling', 'ground', 'mountain_trees', 'sapling', 'shrubland_v1', 'shrubland_v2', 'shrubland_v3']
+
+
+
+
+
+
+
+
+
+
+

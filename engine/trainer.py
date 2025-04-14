@@ -1,20 +1,20 @@
-from engine.model import YOLOwithSimMIM
+from engine.model import YOLOwithSimMIMModel
 from ultralytics.data import build_yolo_dataset
 from ultralytics.utils.torch_utils import de_parallel
 from ultralytics.models.yolo.detect import DetectionTrainer
-
+from ultralytics.utils import DEFAULT_CFG
 # 训练器
 
 class Trainer(DetectionTrainer):
     """
     基于YOLODetectionTrainer的训练器,重写了DataSet和Model的初定义
     """
-    def __init__(self, cfg=..., overrides=None, _callbacks=None):
+    def __init__(self, cfg=DEFAULT_CFG, overrides=None, _callbacks=None):
         super().__init__(cfg, overrides, _callbacks)
         self.pretrain = cfg.get('pretrain',False)
 
     def get_model(self, cfg=None, weights=None, verbose=True):
-        model = YOLOwithSimMIM(cfg, pretrain=self.pretrain)
+        model = YOLOwithSimMIMModel(cfg, pretrain=self.pretrain)
         if weights:
             model.load(weights)
         return model
